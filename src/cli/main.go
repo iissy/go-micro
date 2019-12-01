@@ -11,13 +11,14 @@ import (
 	hello "greeter/src/helloworld"
 
 	"context"
+	"time"
 )
 
 func main() {
 	// 修改consul地址，如果是本机，这段代码和后面的那行使用代码都是可以不用的
 	reg := consul.NewRegistry(func(op *registry.Options) {
 		op.Addrs = []string{
-			"192.168.111.148:8500",
+			"192.168.111.149:8500",
 		}
 	})
 
@@ -37,13 +38,19 @@ func main() {
 		"X-From-Id": "script",
 	})
 
-	rsp, err := cl.SayHello(ctx, &hello.HelloRequest{
-		Name: "John",
-	})
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+	for i := 1; i <= 1000000; i++ {
+		rsp, err := cl.SayHello(ctx, &hello.HelloRequest{
+			Name: "John",
+		})
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 
-	fmt.Println(rsp.Message)
+		fmt.Print(i)
+		fmt.Print("\t")
+		fmt.Println(rsp.Message)
+
+		time.Sleep(time.Second >> uint(i))
+	}
 }
