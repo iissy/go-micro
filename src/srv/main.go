@@ -21,7 +21,7 @@ type Greeter struct{}
 
 // SayHello is
 func (s *Greeter) SayHello(ctx context.Context, req *hello.HelloRequest, rsp *hello.HelloReply) error {
-	rsp.Message = "Hello " + req.Name
+	rsp.Message = "Hello, " + req.Name
 	return nil
 }
 
