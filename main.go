@@ -10,6 +10,7 @@ import (
 	"github.com/iissy/go-micro/messages"
 
 	"github.com/micro/go-micro/v2/registry"
+	"github.com/micro/go-micro/v2/server"
 	"github.com/micro/go-plugins/registry/consul/v2"
 
 	wrapperPrometheus "github.com/micro/go-plugins/wrapper/monitoring/prometheus/v2"
@@ -39,7 +40,11 @@ func main() {
 		micro.WrapHandler(wrapperPrometheus.NewHandlerWrapper()),
 	)
 
-	service.Init()
+	// 优雅关闭服务
+	service.Server().Init(
+		server.Wait(nil),
+	)
+
 	prometheusBoot()
 	helloworld.RegisterGreeterHandler(service.Server(), new(Greeter))
 	if err := service.Run(); err != nil {
