@@ -3,6 +3,7 @@ setlocal
 @rem enter this directory
 cd /d %~dp0
 
-protoc --proto_path=protos --micro_out=src/helloworld --go_out=src/helloworld protos/greeter.proto
+protoc -I../../../ -I=. --go_out=../../../ ./messages/messages.proto
+protoc -I../../../ -I=. --micro_out=plugins=micro:. ./helloworld/helloworld.proto
 
 endlocal
