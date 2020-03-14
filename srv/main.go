@@ -14,7 +14,7 @@ import (
 	"github.com/micro/go-micro/v2/server"
 	"github.com/micro/go-plugins/registry/consul/v2"
 
-	wrapperPrometheus "github.com/micro/go-plugins/wrapper/monitoring/prometheus/v2"
+	"github.com/micro/go-plugins/wrapper/monitoring/prometheus/v2"
 )
 
 type Greeter struct{}
@@ -36,7 +36,7 @@ func main() {
 	service := micro.NewService(
 		micro.Registry(reg),
 		micro.Name("go.micro.srv.greeter"),
-		micro.WrapHandler(wrapperPrometheus.NewHandlerWrapper()),
+		micro.WrapHandler(prometheus.NewHandlerWrapper()),
 	)
 
 	// 优雅关闭服务
