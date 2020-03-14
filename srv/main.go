@@ -2,25 +2,25 @@ package main
 
 import (
 	"context"
-	"github.com/micro/go-micro/v2"
-	"log"
-	"net/http"
-
 	"github.com/iissy/go-micro/config"
 	"github.com/iissy/go-micro/helloworld"
 	"github.com/iissy/go-micro/messages"
+	"github.com/micro/go-micro/v2"
+	"github.com/micro/go-micro/v2/web"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"log"
 
 	"github.com/micro/go-micro/v2/registry"
 	"github.com/micro/go-micro/v2/server"
 	"github.com/micro/go-plugins/registry/consul/v2"
 
 	wrapperPrometheus "github.com/micro/go-plugins/wrapper/monitoring/prometheus/v2"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 type Greeter struct{}
 
 func (s *Greeter) SayHello(ctx context.Context, req *messages.HelloRequest, rsp *messages.HelloReply) error {
+	log.Println("shou dao xinxi.")
 	rsp.Message = "Hello, " + req.Name
 	return nil
 }
@@ -53,12 +53,18 @@ func main() {
 }
 
 func prometheusBoot() {
-	http.Handle("/metrics", promhttp.Handler())
-	// 启动web服务，监听8085端口
+	service := web.NewService(
+		web.Name("go.micro.srv.metrics"),
+	)
+	service.Handle("/metrics", promhttp.Handler())
+
+	if err := service.Init(); err != nil {
+		log.Fatal(err)
+	}
+
 	go func() {
-		err := http.ListenAndServe("192.168.111.1:8085", nil)
-		if err != nil {
-			log.Fatal("ListenAndServe: ", err)
+		if err := service.Run(); err != nil {
+			log.Fatal(err)
 		}
 	}()
 }
