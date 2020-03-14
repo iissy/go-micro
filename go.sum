@@ -312,6 +312,8 @@ github.com/micro/go-plugins/registry/consul/v2 v2.0.3 h1:gdiPbrMLS7kRbUx0/Mk5bsW
 github.com/micro/go-plugins/registry/consul/v2 v2.0.3/go.mod h1:ZffsiTaaplO3k0PkaZS5EQFg5rDLiJvYEuiob0g9jFU=
 github.com/micro/go-plugins/wrapper/monitoring/prometheus/v2 v2.0.3 h1:w0nKfJhbh/ZwHE1Qp3UG3NBsV0lM0PHwDhT5WxJivdc=
 github.com/micro/go-plugins/wrapper/monitoring/prometheus/v2 v2.0.3/go.mod h1:nFwD6iiAPkWIm77XnnuyGt5CssJdOe2QLqWkw6igNjk=
+github.com/micro/go-plugins/wrapper/select/roundrobin/v2 v2.0.3 h1:rfL7Vow76ms7OrRf5/cmORIhyhMYaGxQ6HU/99U3dQc=
+github.com/micro/go-plugins/wrapper/select/roundrobin/v2 v2.0.3/go.mod h1:171pcZi5wdhAv9PG/ehvkfi6Du4ub8cSa9Cy+OEt7/k=
 github.com/micro/mdns v0.3.0 h1:bYycYe+98AXR3s8Nq5qvt6C573uFTDPIYzJemWON0QE=
 github.com/micro/mdns v0.3.0/go.mod h1:KJ0dW7KmicXU2BV++qkLlmHYcVv7/hHnbtguSWt9Aoc=
 github.com/miekg/dns v1.0.14/go.mod h1:W1PPwlIAgtquWBMBEV9nkV9Cazfe8ScdGz/Lj7v3Nrg=

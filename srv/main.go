@@ -20,7 +20,7 @@ import (
 type Greeter struct{}
 
 func (s *Greeter) SayHello(ctx context.Context, req *messages.HelloRequest, rsp *messages.HelloReply) error {
-	log.Println("shou dao xinxi.")
+	log.Printf("Received: %s", req.Name)
 	rsp.Message = "Hello, " + req.Name
 	return nil
 }
